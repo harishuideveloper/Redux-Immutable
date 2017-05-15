@@ -1,9 +1,16 @@
-var React = require('react')
+import React from 'react'
+import { Navigation } from 'components'
+import { container, innerContainer } from './styles.css'
 
 class MainContainer extends React.Component {
   render () {
     return (
-      <div>Hello World!!</div>
+      <div className={container}>
+        <div className={innerContainer}>
+          <Navigation isAuthed = {true}/>
+          { this.props.children }
+        </div>
+      </div>
     )
   }
 }

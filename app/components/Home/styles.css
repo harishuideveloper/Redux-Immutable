@@ -1,0 +1,14 @@
+.container {
+  composes: centeredContainer from 'sharedStyles/styles.css'
+}
+
+/*flexbos froggy
+flexbox.io*/
+
+.title {
+  composes: largeHeader from 'sharedStyles/styles.css'
+}
+
+.slogan {
+  composes: subHeader from 'sharedStyles/styles.css'
+}
