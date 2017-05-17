@@ -7,7 +7,7 @@ class MainContainer extends React.Component {
     return (
       <div className={container}>
         <div className={innerContainer}>
-          <Navigation isAuthed = {true}/>
+          <Navigation isAuthed = {false}/>
           { this.props.children }
         </div>
       </div>
