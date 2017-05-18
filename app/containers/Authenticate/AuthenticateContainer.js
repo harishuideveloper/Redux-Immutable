@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Authenticate } from 'components'
-import auth from 'helpers/auth'
 import * as userActionCreators from 'redux/modules/users'
 
 class AuthenticateContainer extends React.Component {
@@ -15,15 +14,10 @@ class AuthenticateContainer extends React.Component {
     this.handleAuth = this.handleAuth.bind(this)
   }
 
-  handleAuth () {
-    this.props.fetchingUser()
-    auth().then((user) => {
-      this.props.fetchingUserSuccess(user.uid, user, Date.now())
-      this.props.authUser(user.uid)
-    })
-    .catch(e => {
-      this.props.fetchingUserFailure(e)
-    })
+  handleAuth (e) {
+    e.preventDefault()
+    this.props.fetchAndHandleAuthUser()
+      .then(() => this.context.router.replace('feed'))
   }
 
   render () {
@@ -40,10 +34,11 @@ AuthenticateContainer.PropTypes = {
   isFetching: PropTypes.bool.isRequired,
   error: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
-  fetchingUser: PropTypes.func.isRequired,
-  authUser: PropTypes.func.isRequired,
-  fetchingUserFailure: PropTypes.func.isRequired,
-  fetchingUserSuccess: PropTypes.func.isRequired,
+  fetchAndHandleAuthUser: PropTypes.func.isRequired,
+}
+
+AuthenticateContainer.contextTypes = {
+  router: PropTypes.object.isRequired,
 }
 
 function mapStateToProps (state) {
