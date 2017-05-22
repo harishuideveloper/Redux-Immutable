@@ -5,3 +5,13 @@ export function formatUserData(name, avatar, uid) {
     uid,
   }
 }
+
+export function formatDuck(text, {name, avatar, uid}) {
+  return {
+    text,
+    name,
+    avatar,
+    uid,
+    timestand: Date.now()
+  }
+}

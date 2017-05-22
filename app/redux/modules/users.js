@@ -44,7 +44,9 @@ export function fetchingUserSuccess (uid, user, timestamp) {
 }
 
 export function fetchAndHandleAuthUser () {
+
   return function (dispatch) {
+
     dispatch(fetchingUser())
     return auth().then(({user, credential}) => {
       const userData = user.providerData[0]

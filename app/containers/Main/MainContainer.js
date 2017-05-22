@@ -15,7 +15,7 @@ class MainContainer extends React.Component {
       if (user) {
         const userData = user.providerData[0]
         const userInfo = formatUserData(userData.displayName, userData.photoURL, user.uid)
-        this.props.authUser(user.id)
+        this.props.authUser(user.uid)
         this.props.fetchingUserSuccess(user.uid, userInfo, Date.now())
         if(this.props.location.pathname === '/') {
           this.context.router.replace('feed')
